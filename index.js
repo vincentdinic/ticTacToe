@@ -12,7 +12,13 @@ function createBoard(){
         const tr = document.createElement('tr');
         for (let j = 0; j < 3; j++){
             const td = document.createElement('td');
-            td.textContent = board[i][j];
+            td.id = board[i][j];
+            td.textContent = " ";
+            // event listener to see what square is selected
+            td.addEventListener('click',function(evt){
+                isValid(td.id);
+                isWin(td.id);
+            })
             tr.appendChild(td);
         }
         table.appendChild(tr);
@@ -20,18 +26,37 @@ function createBoard(){
     return table;
 }
 
+// is valid square
+function isValid(id){
+    if (id.textContent !== " "){
+        return false;
+    }
+    else{
+        if (player1){
+            id.textContent = "X";
+        }
+        else{
+            id.textContent = "O";
+        }
+        return true;
+    }
+}
+
+function isWin(id){
+    // FIXME
+
+}
 // init
 function init(){
     createBoard();
     
 }
-// while ! hasWon
+
 
 // whose turn it is (x starts)
 
-// event listener to see what square is selected
 
-// is valid square
+
 
 // check for win
 
