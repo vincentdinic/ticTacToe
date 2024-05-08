@@ -14,7 +14,7 @@ function createBoard(callback){
             const td = document.createElement('td');
             const num = board[i][j];
             td.id = num;
-            td.textContent = num;
+            td.textContent = " ";
             // event listener to see what square is selected
             td.addEventListener('click', function(){
                 makeMove(num)}
@@ -27,41 +27,54 @@ function createBoard(callback){
     }
     return table;
 }
+// whose turn it is (x starts)
+var player1 = true;
 
+
+// change turn
+function changeTurn(){
+    player1 = !player1;
+}
 
 function makeMove(id){
+    
     isValid(id);
+    
     isWin(id);
     console.log("Works: ", id);
+    console.log("Turn: ", player1)
 }
+
 // is valid square
 function isValid(id){
-    if (id.textContent !== " "){
+    var cell = document.getElementById(id);
+    
+    if (cell.textContent !== " "){
         return false;
     }
     else{
         if (player1){
-            id.textContent = "X";
+            cell.textContent = "X";
         }
         else{
-            id.textContent = "O";
+            cell.textContent = "O";
         }
+        changeTurn();
         return true;
     }
 }
 
 function isWin(id){
-    // FIXME
-
+    return true;
 }
 // init
 function init(){
-    const table = createBoard();
-    // makeClickable(table);
+    createBoard();
+    
 }
 
 
-// whose turn it is (x starts)
+
 
 
 
