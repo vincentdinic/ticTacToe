@@ -64,47 +64,47 @@ function isValid(id){
 }
 
 function isWin(id){
-    const cell = document.getElementById(id);
+    
     const row = id.substring(0,1);
     const col = id.substring(1, 2);
+    if (checkRow(row) || checkCol(col) ||
+    checkDiagLR() || checkDiagRL()){
+        
+        showModal();
+        
+        return true;
+    }
 
-    checkRow(row);
-    checkCol(col);
-    
-
-    // if left to right diag is X or O
-
-    // if right to left diag is X or O
-
-    return true;
+    return false;
 
 }
 
 function checkRow(row){
-    
     const left = document.getElementById(row + 1);
     const mid = document.getElementById(row + 2);
     const right = document.getElementById(row + 3);
-    
-    
+
     const leftCell = left.textContent;
     const midCell = mid.textContent;
     const rightCell = right.textContent;
-    
     
     // if row is all X or O
     if (leftCell == "X" && midCell == "X" && rightCell == "X" ||
         leftCell == "O" && midCell == "O" && rightCell == "O"
     ){
         console.log("WIN");
+        left.style.backgroundColor = "green";
+        mid.style.backgroundColor = "green";
+        right.style.backgroundColor = "green";
+        return true;
     }
     else{
-        return;
+        return false;
     }
 }
 
 function checkCol(col){
-    // if col is all X or O
+    // gets data from col cells
     const left = document.getElementById(1 + col);
     const mid = document.getElementById(2 + col);
     const right = document.getElementById(3 + col);
@@ -113,17 +113,94 @@ function checkCol(col){
     const midCell = mid.textContent;
     const rightCell = right.textContent;
     
-    
-    // if row is all X or O
+    // if col is all X or O
     if (leftCell == "X" && midCell == "X" && rightCell == "X" ||
         leftCell == "O" && midCell == "O" && rightCell == "O"
     ){
         console.log("WIN");
+        left.style.backgroundColor = "green";
+        mid.style.backgroundColor = "green";
+        right.style.backgroundColor = "green";
+        return true;
     }
     else{
-        return;
+        return false;
     }
 }
+function checkDiagLR(){
+    // data from diagonals
+    const left = document.getElementById(11);
+    const mid = document.getElementById(22);
+    const right = document.getElementById(33);
+    
+    const leftCell = left.textContent;
+    const midCell = mid.textContent;
+    const rightCell = right.textContent;
+    
+    
+    // if diag is all X or O
+    if (leftCell == "X" && midCell == "X" && rightCell == "X" ||
+        leftCell == "O" && midCell == "O" && rightCell == "O"
+    ){
+        console.log("WIN");
+        left.style.backgroundColor = "green";
+        mid.style.backgroundColor = "green";
+        right.style.backgroundColor = "green";
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function checkDiagRL(){
+    const left = document.getElementById(13);
+    const mid = document.getElementById(22);
+    const right = document.getElementById(31);
+    
+    const leftCell = left.textContent;
+    const midCell = mid.textContent;
+    const rightCell = right.textContent;
+    
+    // if diag is all X or O
+    if (leftCell == "X" && midCell == "X" && rightCell == "X" ||
+        leftCell == "O" && midCell == "O" && rightCell == "O"
+        ){
+        console.log("WIN");
+        left.style.backgroundColor = "green";
+        mid.style.backgroundColor = "green";
+        right.style.backgroundColor = "green";
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+function showModal(){
+    const modal = document.querySelector(".modal");
+    const overlay = document.querySelector(".overlay");
+    const closeModalBtn = document.querySelector(".btn-close");
+    const newGameBtn = document.querySelector(".btn-new")
+    
+    
+    modal.classList.remove("hidden");
+    overlay.classList.remove("hidden");
+    
+    const closeModal = function(){
+        modal.classList.add("hidden");
+        overlay.classList.add("hidden");
+    };
+    closeModalBtn.addEventListener("click", closeModal);
+    overlay.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", function (e) {
+        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+          closeModal();
+        }
+      });
+    newGameBtn.addEventListener("click", init());
+}   
 // init
 function init(){
     createBoard();
@@ -136,8 +213,5 @@ function init(){
 
 
 
-// check for win
-
-// if true, show play again button
 
 // boom done
