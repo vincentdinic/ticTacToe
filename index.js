@@ -1,7 +1,7 @@
 // basic script for tic tac toe game vincent di nicolantonio
 
 // function to make board
-function createBoard(){
+function createBoard(callback){
     const board = [
         ["11", "12", "13"], 
         ["21", "22", "23"], 
@@ -12,20 +12,28 @@ function createBoard(){
         const tr = document.createElement('tr');
         for (let j = 0; j < 3; j++){
             const td = document.createElement('td');
-            td.id = board[i][j];
-            td.textContent = " ";
+            const num = board[i][j];
+            td.id = num;
+            td.textContent = num;
             // event listener to see what square is selected
-            td.addEventListener('click',function(evt){
-                isValid(td.id);
-                isWin(td.id);
-            })
+            td.addEventListener('click', function(){
+                makeMove(num)}
+            );
             tr.appendChild(td);
+                   
+            
         }
         table.appendChild(tr);
     }
     return table;
 }
 
+
+function makeMove(id){
+    isValid(id);
+    isWin(id);
+    console.log("Works: ", id);
+}
 // is valid square
 function isValid(id){
     if (id.textContent !== " "){
@@ -48,8 +56,8 @@ function isWin(id){
 }
 // init
 function init(){
-    createBoard();
-    
+    const table = createBoard();
+    // makeClickable(table);
 }
 
 
