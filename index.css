@@ -1,9 +1,14 @@
 table {
     border-collapse: collapse;
     border: 10px solid #ccc;
+    align-items: center;
   }
 tr, td {
   border: 10px solid #ccc;
   padding: 100px;
   text-align: left;
+  font-size: larger;
+}
+h2 {
+    text-align: center;
 }
