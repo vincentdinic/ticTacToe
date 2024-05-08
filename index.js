@@ -194,13 +194,18 @@ function showModal(){
     closeModalBtn.addEventListener("click", closeModal);
     overlay.addEventListener("click", closeModal);
 
-    document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-          closeModal();
-        }
-      });
-    newGameBtn.addEventListener("click", init());
+    
+    newGameBtn.addEventListener("click", function(){
+        clearGame();
+        createBoard();
+    });
 }   
+function clearGame(){
+    document.querySelector("tr").remove();
+    document.querySelector("tr").remove();
+    document.querySelector("tr").remove();
+
+}
 // init
 function init(){
     createBoard();
