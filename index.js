@@ -198,14 +198,15 @@ function showModal(){
     newGameBtn.addEventListener("click", function(){
         clearGame();
         createBoard();
+        closeModal();
     });
 }   
 function clearGame(){
     document.querySelector("tr").remove();
     document.querySelector("tr").remove();
     document.querySelector("tr").remove();
-
 }
+
 // init
 function init(){
     createBoard();

@@ -81,14 +81,21 @@ button {
 
 .btn-new {
     position: absolute;
-    bottom: 150px;
+    bottom: 20px;
 }
 
 .btn-close {
-    transform: translate(10px, -20px);
-    padding: 0.5rem 0.7rem;
-    background: #eee;
-    border-radius: 50%;
+    position: relative;
+    border-radius: 1000px;
+    border: 2px solid black;
+    top:-10;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    background-color: rgb(0, 0, 0);
+    right: -8px;
+    opacity: 1;
+    cursor: pointer;
 }
 
 .overlay {
